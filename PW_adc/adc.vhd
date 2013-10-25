@@ -46,8 +46,6 @@ end adc;
 architecture Behavioral of adc is
 
 
-
-
 signal current_state : std_logic_vector(3 downto 0) := (others => '0');
 
 signal data1 : std_logic_vector(11 downto 0)  := (others => '1');
@@ -245,16 +243,16 @@ end process ReadSignalProc;
 
 ReadInData : process (CLKIN, RESET) is
 begin
-	if    (state = read1 and EOC = '0') then
+	if    (state = read1 and rd_sgn = '0') then
 		data1  <= DB;
 		dv1   <= '1';
-	elsif (state = read2 and EOC = '0') then
+	elsif (state = read2 and rd_sgn = '0') then
 		data2  <= DB;
 		dv2   <= '1';
-	elsif (state = read3 and EOC = '0') then
+	elsif (state = read3 and rd_sgn = '0') then
 		data3  <= DB;
 		dv3   <= '1';
-	elsif (state = read4 and EOC = '0') then
+	elsif (state = read4 and rd_sgn = '0') then
 		data4  <= DB;
 		dv4   <= '1';	
 	else
